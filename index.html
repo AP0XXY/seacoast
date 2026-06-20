@@ -35,11 +35,11 @@
         <div class="service-silo__grid">
           <a href="./services/">Service Directory</a>
           <a href="./services/concrete-restoration.html">Concrete Restoration</a>
+          <a class="service-silo__subitem" href="./services/painting.html">Painting Services</a>
           <a href="./services/waterproofing.html">Waterproofing</a>
           <a href="./services/stucco-repair.html">Stucco Repair</a>
           <a href="./services/protective-coatings.html">Protective Coatings</a>
           <a href="./services/balcony-restoration.html">Balcony Restoration</a>
-          <a href="./services/painting.html">Painting Services</a>
         </div>
       </div>
     </section>
@@ -92,6 +92,118 @@
         border-color: #2563eb;
         color: #2563eb;
       }
+      .service-silo__grid .service-silo__subitem {
+        border-left: 4px solid #2563eb;
+        padding-left: 32px;
+        position: relative;
+      }
+      .service-silo__grid .service-silo__subitem:before {
+        color: #64748b;
+        content: "Concrete Restoration / ";
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+      .site-services-menu {
+        position: relative;
+      }
+      .site-services-trigger {
+        align-items: center;
+        display: inline-flex;
+        gap: 6px;
+      }
+      .site-services-trigger:after {
+        content: "v";
+        font-size: 10px;
+      }
+      .site-services-dropdown {
+        background: #fff;
+        border: 1px solid #dfe5ec;
+        border-radius: 4px;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, .16);
+        display: none;
+        left: 0;
+        min-width: 260px;
+        padding: 8px;
+        position: absolute;
+        top: calc(100% + 12px);
+        z-index: 100;
+      }
+      .site-services-menu:hover .site-services-dropdown,
+      .site-services-menu:focus-within .site-services-dropdown {
+        display: grid;
+        gap: 2px;
+      }
+      .site-services-dropdown a {
+        border-radius: 3px;
+        color: #0f172a !important;
+        display: block;
+        font-size: 13px !important;
+        padding: 10px 12px;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .site-services-dropdown a:hover {
+        background: #f1f5f9;
+        color: #2563eb !important;
+      }
+      .site-services-dropdown .site-services-child {
+        color: #475569 !important;
+        padding-left: 28px;
+        position: relative;
+      }
+      .site-services-dropdown .site-services-child:before {
+        content: "->";
+        left: 12px;
+        position: absolute;
+      }
+      @media (max-width: 767px) {
+        .site-services-menu {
+          width: 100%;
+        }
+        .site-services-dropdown {
+          box-shadow: none;
+          margin-top: 8px;
+          min-width: 0;
+          position: static;
+          width: 100%;
+        }
+      }
     </style>
+    <script>
+      (function () {
+        var dropdownHtml = [
+          '<div class="site-services-menu">',
+          '<a class="site-services-trigger" href="./services/">Services</a>',
+          '<div class="site-services-dropdown" aria-label="Services submenu">',
+          '<a href="./services/concrete-restoration.html">Concrete Restoration</a>',
+          '<a class="site-services-child" href="./services/painting.html">Painting</a>',
+          '<a href="./services/waterproofing.html">Waterproofing</a>',
+          '<a href="./services/stucco-repair.html">Stucco Repair</a>',
+          '<a href="./services/protective-coatings.html">Protective Coatings</a>',
+          '<a href="./services/balcony-restoration.html">Balcony Restoration</a>',
+          '</div>',
+          '</div>'
+        ].join('');
+
+        function enhanceServicesLinks() {
+          document.querySelectorAll('a[href="#services"]').forEach(function (link) {
+            if (link.dataset.servicesEnhanced) return;
+            var wrapper = document.createElement('span');
+            wrapper.innerHTML = dropdownHtml;
+            link.replaceWith(wrapper.firstElementChild);
+          });
+        }
+
+        enhanceServicesLinks();
+        new MutationObserver(enhanceServicesLinks).observe(document.getElementById('root'), {
+          childList: true,
+          subtree: true
+        });
+      })();
+    </script>
 </body>
 </html>

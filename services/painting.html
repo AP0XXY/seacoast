@@ -90,6 +90,56 @@ color: var(--blue);
 border-bottom: 2px solid var(--blue);
 padding-bottom: 2px;
 }
+.nav-services {
+position: relative;
+}
+.nav-services-trigger {
+align-items: center;
+display: inline-flex;
+gap: 0.35rem;
+}
+.nav-services-trigger:after {
+content: "v";
+font-size: 0.7rem;
+}
+.nav-services-menu {
+background: var(--white);
+border-radius: 4px;
+box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+display: none;
+left: 0;
+min-width: 260px;
+padding: 0.5rem;
+position: absolute;
+top: calc(100% + 0.75rem);
+z-index: 1001;
+}
+.nav-services:hover .nav-services-menu,
+.nav-services:focus-within .nav-services-menu {
+display: grid;
+gap: 0.15rem;
+}
+.nav-links .nav-services-menu a {
+color: var(--navy);
+display: block;
+font-size: 0.86rem;
+padding: 0.65rem 0.75rem;
+white-space: nowrap;
+}
+.nav-links .nav-services-menu a:hover {
+background: var(--light-gray);
+color: var(--blue);
+}
+.nav-links .nav-services-menu a.nav-services-child {
+color: rgb(82, 96, 112);
+padding-left: 1.75rem;
+position: relative;
+}
+.nav-links .nav-services-menu a.nav-services-child:before {
+content: "->";
+left: 0.75rem;
+position: absolute;
+}
 .header-phone {
 color: var(--white);
 font-weight: bold;
@@ -464,6 +514,16 @@ gap: 1rem;
 .nav-toggle:checked ~ nav .nav-links {
 display: flex;
 }
+.nav-services {
+width: 100%;
+}
+.nav-services-menu {
+box-shadow: none;
+margin-top: 0.5rem;
+min-width: 0;
+position: static;
+width: 100%;
+}
 }
 @media (min-width: 1440px) {
 .container {
@@ -481,13 +541,17 @@ max-width: 1300px;
             <nav>
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
-                    <li><a href="./">Services</a></li>
-                    <li><a href="./concrete-restoration.html">Concrete Restoration</a></li>
-                    <li><a href="./waterproofing.html">Waterproofing</a></li>
-                    <li><a href="./stucco-repair.html">Stucco Repair</a></li>
-                    <li><a href="./protective-coatings.html">Protective Coatings</a></li>
-                    <li><a href="./balcony-restoration.html">Balcony Restoration</a></li>
-                    <li><a href="./painting.html" class="nav-active">Painting</a></li>
+                    <li class="nav-services">
+                        <a class="nav-services-trigger" href="./">Services</a>
+                        <div class="nav-services-menu">
+                            <a href="./concrete-restoration.html">Concrete Restoration</a>
+                            <a class="nav-services-child" href="./painting.html">Painting</a>
+                            <a href="./waterproofing.html">Waterproofing</a>
+                            <a href="./stucco-repair.html">Stucco Repair</a>
+                            <a href="./protective-coatings.html">Protective Coatings</a>
+                            <a href="./balcony-restoration.html">Balcony Restoration</a>
+                        </div>
+                    </li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
