@@ -151,11 +151,12 @@ nav {
   border-radius: 4px !important;
   box-shadow: 0 16px 32px rgba(15, 23, 42, .14) !important;
   display: none;
-  left: 0;
+  left: 50%;
   min-width: 270px;
   padding: .5rem !important;
   position: absolute;
   top: calc(100% + .85rem);
+  transform: translateX(-50%);
   z-index: 1001;
 }
 
@@ -508,6 +509,7 @@ footer a {
     margin-top: .5rem;
     min-width: 0;
     position: static !important;
+    transform: none;
   }
 
   .header-phone,
